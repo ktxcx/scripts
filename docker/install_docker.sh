@@ -15,10 +15,24 @@ add-apt-repository \
 apt update 
 apt install docker-ce -y
 
-groupadd docker
+#groupadd docker
 
-systemctl enable docker
-systemctl start docker
+cat > /etc/docker/daemon.json <<EOF
+{
+  "exec-opts": ["native.cgroupdriver=systemd"],
+  "log-driver": "json-file",
+  "log-opts": {
+    "max-size": "100m"
+  },
+  "storage-driver": "overlay2"
+}
+EOF
 
-curl -L https://github.com/docker/compose/releases/download/${docker_compose_ver}/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
+mkdir -p /etc/systemd/system/docker.service.d
+
+# Restart docker.
+systemctl daemon-reload
+systemctl restart docker
+
+curl -oL https://github.com/docker/compose/releases/download/${docker_compose_ver}/docker-compose-$(uname -s)-$(uname -m) -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
