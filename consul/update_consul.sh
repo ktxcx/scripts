@@ -1,6 +1,6 @@
 #!/bin/bash
 
-consul_version="1.6.1"
+consul_version="1.7.2"
 
 # create a tempoary folder for the consul download
 mkdir -p /tmp/consul_update
