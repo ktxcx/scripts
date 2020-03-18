@@ -1,7 +1,15 @@
 #!/bin/bash
 env=${1}
 
-consul_version="1.6.1"
+case $env in
+        stage)
+                consul_version="1.7.2"
+                ;;
+        *)
+                consul_version="1.6.1"
+                ;;
+esac
+
 
 # stopping consul-related containers
 docker ps | grep "consul-" | cut -d. -f1 | awk '{print $1}' | xargs docker stop
