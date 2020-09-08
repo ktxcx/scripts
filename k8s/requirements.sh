@@ -6,3 +6,4 @@ deb https://apt.kubernetes.io/ kubernetes-xenial main
 EOF
 apt-get update
 apt-get install -y kubelet kubeadm kubectl
+kubeadm config images pull
