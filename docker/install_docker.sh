@@ -2,7 +2,7 @@
 
 linux_os=$(cat /etc/issue|cut -d" " -f1|head -1|awk '{print tolower($0)}')
 
-docker_compose_ver=1.27.0
+docker_compose_ver=1.27.2
 
 apt remove docker docker-engine docker.io -y
 apt install gnupg apt-transport-https ca-certificates curl software-properties-common -y
