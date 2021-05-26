@@ -1,6 +1,6 @@
 #!/bin/bash
 
-node_exporter_version=1.1.1
+node_exporter_version=1.1.2
 
 os=$( uname )
 
